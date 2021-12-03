@@ -20,11 +20,12 @@ import java.text.NumberFormat;
  */
 
 public class MainActivity extends AppCompatActivity {
-
+    int quantity =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     /**
@@ -37,13 +38,15 @@ public class MainActivity extends AppCompatActivity {
     }
     public void increment(View view)
     {
-        int quality =3;
-        display(quality);
+
+        quantity =quantity+1 ;
+        display(quantity);
     }
     public void decrement(View view)
     {
-        int quality =1;
-        display(quality);
+        
+        quantity = quantity-1;
+        display(quantity);
     }
 
     /**
