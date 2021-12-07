@@ -37,11 +37,20 @@
         android:layout_height="wrap_content"
         android:text="+2 points"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:onClick="plusTowForTheamA">
     </Button>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="free throw"/>
+        android:text="free throw"
+        android:onClick="freeThrowForTheamA"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reset"
+        android:onClick="resetForTheamA"
+        android:layout_marginTop="16sp"
+        />
 
 </LinearLayout>

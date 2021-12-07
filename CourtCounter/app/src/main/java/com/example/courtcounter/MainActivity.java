@@ -7,12 +7,13 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+    int Score=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //void displayForTeamA();
+
 
     }
     /**
@@ -24,7 +25,22 @@ public class MainActivity extends AppCompatActivity {
     }
     public void plusThreeForTheamA(View view)
     {
-        int Score =3;
+        Score =Score+3;
+        displayForTeamA(Score);
+    }
+    public void plusTowForTheamA(View view)
+    {
+        Score =Score+2;
+        displayForTeamA(Score);
+    }
+    public void freeThrowForTheamA(View view)
+    {
+        Score =Score+1;
+        displayForTeamA(Score);
+    }
+    public void resetForTheamA(View view)
+    {
+        Score =0;
         displayForTeamA(Score);
     }
 }
