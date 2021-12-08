@@ -33,9 +33,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int Price=calculatePrice();
-      String priceMessage="Total : $"+Price+"\nThank you!";
-//      priceMessage = priceMessage +"\nThank you";
-      displayMessage(priceMessage);
+        String message=createOrderSummary(Price);
+        displayMessage(message);
 
 
     }
@@ -80,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
     {
         TextView priceTextView =(TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(message);
+    }
+    private String createOrderSummary(int mrp)
+    {
+        String Name="Chetan Singh Negi";
+
+        String priceMessage="Name: "+Name +"\nQuantity: "+quantity +"\nTotal : $"+mrp+"\nThank you!";
+//      priceMessage = priceMessage +"\nThank you";
+        return priceMessage;
     }
 }
 
