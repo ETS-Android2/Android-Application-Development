@@ -20,7 +20,8 @@ import java.text.NumberFormat;
  */
 
 public class MainActivity extends AppCompatActivity {
-    int quantity =0;
+    int quantity = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,32 +33,29 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int Price=calculatePrice();
-        String message=createOrderSummary(Price);
-        displayMessage(message);
+        int Price = calculatePrice();
+        displayMessage(createOrderSummary(Price));
 
 
     }
+
     /**
      * Calculates the price of the order.
-     *
      */
-    public int  calculatePrice()
-    {
-        int price=quantity * 5;
-          return  price;
+    public int calculatePrice() {
+        return (quantity * 5);
+
     }
 
-    public void increment(View view)
-    {
+    public void increment(View view) {
 
-        quantity =quantity+1 ;
+        quantity += 1;
         displayQuantity(quantity);
     }
-    public void decrement(View view)
-    {
 
-        quantity = quantity-1;
+    public void decrement(View view) {
+
+        quantity -= 1;
         displayQuantity(quantity);
     }
 
@@ -68,23 +66,16 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
-    /**
-     * This method displays the given price on the screen.
-     */
-   /* private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }*/
-    private void displayMessage(String message)
-    {
-        TextView priceTextView =(TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
-    }
-    private String createOrderSummary(int mrp)
-    {
-        String Name="Chetan Singh Negi";
 
-        String priceMessage="Name: "+Name +"\nQuantity: "+quantity +"\nTotal : $"+mrp+"\nThank you!";
+    private void displayMessage(String message) {
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(message);
+    }
+
+    private String createOrderSummary(int totalPrice) {
+        String Name = "Chetan Singh Negi";
+
+        String priceMessage = "Name: " + Name + "\nQuantity: " + quantity + "\nTotal : $" + totalPrice + "\nThank you!";
 //      priceMessage = priceMessage +"\nThank you";
         return priceMessage;
     }
