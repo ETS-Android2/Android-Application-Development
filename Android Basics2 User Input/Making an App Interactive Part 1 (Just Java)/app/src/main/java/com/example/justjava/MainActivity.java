@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.NumberFormat;
+///this = current object
 
 /**
  * This app displays an order form to order coffee.
