@@ -39,8 +39,10 @@ public class MainActivity extends AppCompatActivity {
         int Price = calculatePrice();
         CheckBox whippedCreamCheckBox=(CheckBox) findViewById(R.id.whipped_Cream_cheak_box);
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+        CheckBox chocolateCheckBox=(CheckBox)findViewById(R.id.chocolate_cheak_box);
+        boolean hasChocolate=chocolateCheckBox.isChecked();
         Log.v("MainActivity","has Whipped Cream :" +hasWhippedCream);
-        displayMessage(createOrderSummary(Price,hasWhippedCream));
+        displayMessage(createOrderSummary(Price,hasWhippedCream,hasChocolate));
 
 
     }
@@ -78,10 +80,10 @@ public class MainActivity extends AppCompatActivity {
         orderSummaryTextView.setText(message);
     }
   
-    private String createOrderSummary(int totalPrice,boolean addWhippedCream) {
+    private String createOrderSummary(int totalPrice,boolean addWhippedCream, boolean addChocolate) {
         String Name = "Chetan Singh Negi";
 
-        String priceMessage = "Name: " + Name +"\nAdd Whipped Cream ?"+ addWhippedCream+"\nQuantity: " + quantity + "\nTotal : $" + totalPrice + "\nThank you!";
+        String priceMessage = "Name: " + Name +"\nAdd Whipped Cream ?"+ addWhippedCream+"\nAdd Chocolate ?"+ addChocolate+"\nQuantity: " + quantity + "\nTotal : $" + totalPrice + "\nThank you!";
 //      priceMessage = priceMessage +"\nThank you";
         return priceMessage;
     }
