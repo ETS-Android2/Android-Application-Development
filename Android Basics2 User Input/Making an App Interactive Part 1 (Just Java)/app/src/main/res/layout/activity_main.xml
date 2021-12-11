@@ -6,14 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TOPPINGS"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
 
+        />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Whipped cream"
+        android:textSize="16sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="24dp"
+
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quantity!"
         android:textAllCaps="true"
         android:textSize="16sp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -57,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
         android:textAllCaps="true"
         android:text="order summary"
@@ -71,14 +88,14 @@
         android:text="$0"
         android:id="@+id/order_summary_text_view"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="8dp"
         android:textSize="16sp"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="8dp"
         android:onClick="submitOrder"
         android:text="order"
         android:textColor="@color/black" />
