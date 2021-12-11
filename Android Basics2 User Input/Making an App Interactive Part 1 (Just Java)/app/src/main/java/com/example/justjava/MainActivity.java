@@ -7,6 +7,8 @@
  **/
 package com.example.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -127,6 +129,13 @@ public class MainActivity extends AppCompatActivity {
 
         String priceMessage = "Name: " + myName +"\nAdd Whipped Cream ?"+ addWhippedCream+"\nAdd Chocolate ?"+ addChocolate+"\nQuantity: " + quantity + "\nTotal : $" + totalPrice + "\nThank you!";
 //      priceMessage = priceMessage +"\nThank you";
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just java Order For " + myName);
+        intent.putExtra(Intent.EXTRA_TEXT,priceMessage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
         return priceMessage;
     }
 }
