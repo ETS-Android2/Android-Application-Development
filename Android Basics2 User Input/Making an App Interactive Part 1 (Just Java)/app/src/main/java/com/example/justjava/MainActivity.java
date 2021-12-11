@@ -27,6 +27,7 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
     int quantity = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int Price = calculatePrice();
+
         CheckBox whippedCreamCheckBox=(CheckBox) findViewById(R.id.whipped_Cream_cheak_box);
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
         CheckBox chocolateCheckBox=(CheckBox)findViewById(R.id.chocolate_cheak_box);
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         EditText nameEditText =(EditText)findViewById(R.id.name_edit_text);
         String UserName=nameEditText.getText().toString();
         Log.v("MainActivity","has Whipped Cream :" +hasWhippedCream);
+        int Price = calculatePrice(hasWhippedCream,hasChocolate);
         displayMessage(createOrderSummary(Price,hasWhippedCream,hasChocolate,UserName));
 
 
@@ -55,8 +57,21 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Calculates the price of the order.
      */
-    public int calculatePrice() {
-        return (quantity * 5);
+    public int calculatePrice(boolean cream ,boolean Chocolate) {
+      //  return (quantity * 5);
+        int BasePrice=5;
+        if(cream==true)
+        {
+            BasePrice +=1;
+        }
+
+        if (Chocolate)
+        {
+            BasePrice = (BasePrice + 2) ;
+        }
+
+
+        return quantity*BasePrice;
 
     }
 
