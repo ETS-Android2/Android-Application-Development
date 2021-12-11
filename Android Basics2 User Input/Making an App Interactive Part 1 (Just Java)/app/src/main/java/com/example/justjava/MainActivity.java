@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
         CheckBox chocolateCheckBox=(CheckBox)findViewById(R.id.chocolate_cheak_box);
         boolean hasChocolate=chocolateCheckBox.isChecked();
+        
         Log.v("MainActivity","has Whipped Cream :" +hasWhippedCream);
         displayMessage(createOrderSummary(Price,hasWhippedCream,hasChocolate));
+
 
 
     }
@@ -79,7 +82,15 @@ public class MainActivity extends AppCompatActivity {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(message);
     }
-  
+
+    /**
+     * Create summary of the order.
+     *
+     * @param addWhippedCream is whether or not the user wants whipped cream topping
+     * @param addChocolate is whether or not the user wants chocolate topping
+     * @param totalPrice of the order
+     * @return text summary
+     */
     private String createOrderSummary(int totalPrice,boolean addWhippedCream, boolean addChocolate) {
         String Name = "Chetan Singh Negi";
 
