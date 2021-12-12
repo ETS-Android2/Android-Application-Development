@@ -51,7 +51,16 @@ public class MainActivity extends AppCompatActivity {
         String UserName=nameEditText.getText().toString();
         Log.v("MainActivity","has Whipped Cream :" +hasWhippedCream);
         int Price = calculatePrice(hasWhippedCream,hasChocolate);
-        displayMessage(createOrderSummary(Price,hasWhippedCream,hasChocolate,UserName));
+        String priceMessage= createOrderSummary(Price,hasWhippedCream,hasChocolate,UserName);
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just java Order For " + UserName);
+        intent.putExtra(Intent.EXTRA_TEXT,priceMessage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
+       // displayMessage(priceMessage);
 
 
 
@@ -111,10 +120,10 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
-    private void displayMessage(String message) {
+    /*private void displayMessage(String message) {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(message);
-    }
+    }*/
 
     /**
      * Create summary of the order.
@@ -127,16 +136,10 @@ public class MainActivity extends AppCompatActivity {
     private String createOrderSummary(int totalPrice,boolean addWhippedCream, boolean addChocolate ,String myName) {
        // String Name = "Chetan Singh Negi";
 
-        String priceMessage = "Name: " + myName +"\nAdd Whipped Cream ?"+ addWhippedCream+"\nAdd Chocolate ?"+ addChocolate+"\nQuantity: " + quantity + "\nTotal : $" + totalPrice + "\nThank you!";
+        String sMessage = "Name: " + myName +"\nAdd Whipped Cream ?"+ addWhippedCream+"\nAdd Chocolate ?"+ addChocolate+"\nQuantity: " + quantity + "\nTotal : $" + totalPrice + "\nThank you!";
 //      priceMessage = priceMessage +"\nThank you";
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Just java Order For " + myName);
-        intent.putExtra(Intent.EXTRA_TEXT,priceMessage);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
-        return priceMessage;
+
+        return sMessage;
     }
 }
 
