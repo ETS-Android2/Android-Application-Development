@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         String priceMessage= createOrderSummary(Price,hasWhippedCream,hasChocolate,UserName);
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.order_summary_email_subject) + UserName);
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.order_summary_email_subject, UserName));
         intent.putExtra(Intent.EXTRA_TEXT,priceMessage);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
@@ -137,9 +137,9 @@ public class MainActivity extends AppCompatActivity {
        // String Name = "Chetan Singh Negi";
 
         String sMessage =getString(R.string.order_summary_name,myName)+
-                "\n"+getString(R.string.order_summary_whipped_cream)+ addWhippedCream+
-                "\n"+getString(R.string.order_summary_chocolate)+ addChocolate+
-                "\n"+getString(R.string.quantity) + quantity +
+                "\n"+getString(R.string.order_summary_whipped_cream, addWhippedCream)+
+                "\n"+getString(R.string.order_summary_chocolate, addChocolate)+
+                "\n"+getString(R.string.quantity) +" "+ quantity +
                 "\n"+getString(R.string.order_summary_price,NumberFormat.getCurrencyInstance().format(totalPrice))+
                 "\n"+getString(R.string.thank_you);
 //      priceMessage = priceMessage +"\nThank you";

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Just Java</string>
+    <string name="app_name">जस्ट जावा</string>
     <string name="thank_you">धन्यवाद!</string>
     <string name="toppings">उपरी परत</string>
     <!-- Hint text display in the empty field for the user's name [CHAR LIMIT=20] -->
@@ -62,4 +62,5 @@
       "Just Java order for Amy" where Amy is the user's name. [CHAR LIMIT=NONE]
     -->
     <string name="order_summary_email_subject">जस्ट जावा ऑर्डर फॉर  <xliff:g id="name" example="Amy">%s</xliff:g></string>
+
 </resources>
