@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/toppings"
+            style="@style/CustomText"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
 
@@ -46,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/quantity"
-            android:textAllCaps="true"
+            style="@style/CustomText"
             android:textSize="16sp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
