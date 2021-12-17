@@ -15,14 +15,25 @@
  */
 package com.example.android.miwok;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class NumbersActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
+        String[] word = new String[10];
+       word[0]="One";
+        word[0]="Two";
+        word[0]="Three";
+        word[0]="Four";
+        word[0]="Five";
+        word[0]="Six";
+        word[0]="Seven";
+        word[0]="Eight";
+        word[0]="Nine";
+        word[0]="Ten";
+
     }
 }
