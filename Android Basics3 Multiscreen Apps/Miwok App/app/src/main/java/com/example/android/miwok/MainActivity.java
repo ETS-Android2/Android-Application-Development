@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(numbersIntent);
             }
         });
+        
 
         // Find the View that shows the family category
         TextView family = (TextView) findViewById(R.id.family);
