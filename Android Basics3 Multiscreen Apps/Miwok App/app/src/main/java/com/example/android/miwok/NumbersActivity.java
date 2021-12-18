@@ -19,32 +19,35 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class NumbersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
-        String[] word = new String[10];
-        word[0]="One";
-        word[1]="Two";
-        word[2]="Three";
-        word[3]="Four";
-        word[4]="Five";
-        word[5]="Six";
-        word[6]="Seven";
-        word[7]="Eight";
-        word[8]="Nine";
-        word[9]="Ten";
-        Log.v("NumbersActivity","Words at index 0: "+word[0]);
-        Log.v("NumbersActivity","Words at index 1: "+word[1]);
-        Log.v("NumbersActivity","Words at index 2: "+word[2]);
-        Log.v("NumbersActivity","Words at index 3: "+word[3]);
-        Log.v("NumbersActivity","Words at index 4: "+word[4]);
-        Log.v("NumbersActivity","Words at index 5: "+word[5]);
-        Log.v("NumbersActivity","Words at index 6: "+word[6]);
-        Log.v("NumbersActivity","Words at index 7: "+word[7]);
-        Log.v("NumbersActivity","Words at index 8: "+word[8]);
-        Log.v("NumbersActivity","Words at index 9: "+word[9]);
+        ArrayList<String> word=new ArrayList<String>();
+
+        word.add("One");
+        word.add("Two");
+        word.add("Three");
+        word.add("Four");
+        word.add("Five");
+        word.add("Six");
+        word.add("Seven");
+        word.add("Eight");
+        word.add("Nine");
+        word.add("Ten");
+        Log.v("NumbersActivity","Words at index 0: "+word.get(0));
+        Log.v("NumbersActivity","Words at index 1: "+word.get(1));
+        Log.v("NumbersActivity","Words at index 2: "+word.get(2));
+        Log.v("NumbersActivity","Words at index 3: "+word.get(3));
+        Log.v("NumbersActivity","Words at index 4: "+word.get(4));
+        Log.v("NumbersActivity","Words at index 5: "+word.get(5));
+        Log.v("NumbersActivity","Words at index 6: "+word.get(6));
+        Log.v("NumbersActivity","Words at index 7: "+word.get(7));
+        Log.v("NumbersActivity","Words at index 8: "+word.get(8));
+        Log.v("NumbersActivity","Words at index 9: "+word.get(9));
 
 
     }
