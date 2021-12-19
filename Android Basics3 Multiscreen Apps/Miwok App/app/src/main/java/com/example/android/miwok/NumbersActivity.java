@@ -54,8 +54,7 @@ public class NumbersActivity extends AppCompatActivity {
         LinearLayout root =(LinearLayout)findViewById(R.id.rootView);
 
 
-        int index=0;
-        while ( index< word.size())
+        for(int index=0;index<word.size();index++)
         {
         TextView wordView=new TextView(this);
         wordView.setText(word.get(index));
