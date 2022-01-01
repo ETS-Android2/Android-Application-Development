@@ -20,14 +20,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"play Button",Toast.LENGTH_SHORT).show();
             }
         });
-        Button pauseButton =(Button)findViewById(R.id.pause_button);
-        pauseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Pause Button",Toast.LENGTH_SHORT).show();
-
-            }
-        });
+        Button pauseButton = findViewById(R.id.pause_button);
+        pauseButton.setOnClickListener(v -> Toast.makeText(MainActivity.this,"Pause Button",Toast.LENGTH_SHORT).show());
     }
 
 
