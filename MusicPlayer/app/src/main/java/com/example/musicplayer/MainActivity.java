@@ -23,12 +23,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button pauseButton = findViewById(R.id.pause_button);
-        pauseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer.pause();
-            }
-        });
+        pauseButton.setOnClickListener(v -> mediaPlayer.pause());
 
     }
 
