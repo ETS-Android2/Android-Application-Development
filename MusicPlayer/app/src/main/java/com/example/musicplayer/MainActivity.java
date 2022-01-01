@@ -2,6 +2,7 @@ package com.example.musicplayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,15 +14,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MediaPlayer mediaPlayer=MediaPlayer.create(this,R.raw.alanwalker);
         Button playButton =(Button)findViewById(R.id.play_button);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"play Button",Toast.LENGTH_SHORT).show();
+                mediaPlayer.start();
             }
         });
         Button pauseButton = findViewById(R.id.pause_button);
-        pauseButton.setOnClickListener(v -> Toast.makeText(MainActivity.this,"Pause Button",Toast.LENGTH_SHORT).show());
+        pauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.pause();
+            }
+        });
+
     }
 
 
