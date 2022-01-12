@@ -66,6 +66,9 @@ public class PhrasesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Word word= words.get(position);
+                //Release the media player if it currently exists because we are about to
+                //play a different sound file
+                releaseMediaPlayer();
                 mMediaPlayer= MediaPlayer.create(PhrasesActivity.this,word.getmAudioResourceId());
                 mMediaPlayer.start();
                 //Setup a listener on the media player, so that we can stop and release the
