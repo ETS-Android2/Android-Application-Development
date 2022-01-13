@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
 
     android:minHeight="@dimen/list_item_height"
-    android:background="@color/tan_background">
+    android:background="@color/tan_background"
+    >
 
     <ImageView
         android:id="@+id/image_Resource_Id"
