@@ -15,6 +15,8 @@
  */
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +28,23 @@ import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
     private MediaPlayer mMediaPlayer;
+    /** Handles audio focus when playing a sound file */
+    private AudioManager mAudioManager;
+    AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
+            new AudioManager.OnAudioFocusChangeListener() {
+                public void onAudioFocusChange(int focusChange) {
+                    if (focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                        mMediaPlayer.pause();
+                        mMediaPlayer.seekTo(0);
+                    }
+                    else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                        mMediaPlayer.start();
+                    } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                        releaseMediaPlayer();
+                    }
+                }
+            };
     private  MediaPlayer.OnCompletionListener mCompletionListener=new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
@@ -36,7 +55,8 @@ public class FamilyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
-
+        mAudioManager =(AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         // Create a list of words
         final ArrayList<Word> words = new ArrayList<Word>();
         words.add(new Word("Father", "әpә",R.drawable.family_father,R.raw.family_father));
@@ -70,11 +90,21 @@ public class FamilyActivity extends AppCompatActivity {
                 //Release the media player if it currently exists because we are about to
                 //play a different sound file
                 releaseMediaPlayer();
-                mMediaPlayer= MediaPlayer.create(FamilyActivity.this,word.getmAudioResourceId());
-                mMediaPlayer.start();
-                //Setup a listener on the media player, so that we can stop and release the
-                //media player once the sound has finished playing
-                mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                        // Use the music stream.
+                        AudioManager.STREAM_MUSIC,
+                        // Request permanent focus.
+                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    //mAudioManager.registerMediaButtonEventReceiver();
+                    // We have audio focus now.
+                    mMediaPlayer = MediaPlayer.create(FamilyActivity.this, word.getmAudioResourceId());
+                    mMediaPlayer.start();
+                    //Setup a listener on the media player, so that we can stop and release the
+                    //media player once the sound has finished playing
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
             }
         });
     }
@@ -100,6 +130,7 @@ public class FamilyActivity extends AppCompatActivity {
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
             mMediaPlayer = null;
+            mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     }
 }

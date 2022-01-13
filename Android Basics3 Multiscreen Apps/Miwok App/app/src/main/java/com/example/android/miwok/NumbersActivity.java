@@ -25,7 +25,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class NumbersActivity extends AppCompatActivity {
     private MediaPlayer mMediaPlayer;
@@ -33,7 +32,7 @@ public class NumbersActivity extends AppCompatActivity {
     private AudioManager mAudioManager;
 
 
-    AudioManager.OnAudioFocusChangeListener mnAudioFocusChangeListener =
+    AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
             new AudioManager.OnAudioFocusChangeListener() {
                 public void onAudioFocusChange(int focusChange) {
                     if (focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
@@ -95,14 +94,14 @@ public class NumbersActivity extends AppCompatActivity {
                 //play a different sound file
                 releaseMediaPlayer();
                 // Request audio focus for playback
-                int result = mAudioManager.requestAudioFocus(afChangeListener,
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
                         // Use the music stream.
                         AudioManager.STREAM_MUSIC,
                         // Request permanent focus.
                         AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                    mAudioManager.registerMediaButtonEventReceiver();
+                    //mAudioManager.registerMediaButtonEventReceiver();
                     // We have audio focus now.
 
                 mMediaPlayer = MediaPlayer.create(NumbersActivity.this, word.getmAudioResourceId());
@@ -137,6 +136,7 @@ public class NumbersActivity extends AppCompatActivity {
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
             mMediaPlayer = null;
+            mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     }
 
