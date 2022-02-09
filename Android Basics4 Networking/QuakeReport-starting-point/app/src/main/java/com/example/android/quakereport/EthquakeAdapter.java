@@ -10,6 +10,6 @@ public class EthquakeAdapter extends ArrayAdapter {
     public EthquakeAdapter(Context context, int layout, ArrayList<EthquakeListItem> items)
     {
         super(context,layout);
-        items=items;
+        this.items=items;
     }
 }
