@@ -1,25 +1,25 @@
 package com.example.android.quakereport;
 
-public class EthquakeListItem {
-    private  int mMagnitude;
+public class EarthquakeListItem {
+    private  String mMagnitude;
     private String mLocation;
     private String mDate;
 
-    public EthquakeListItem(int magnitude, String location, String date) {
+    public EarthquakeListItem(String magnitude, String location, String date) {
         this.mMagnitude = magnitude;
         this.mLocation = location;
         this.mDate = date;
     }
 
-    public int getmMagnitude() {
+    public String getMagnitude() {
         return mMagnitude;
     }
 
-    public String getmDate() {
+    public String getDate() {
         return mDate;
     }
 
-    public String getmLocation() {
+    public String getLocation() {
         return mLocation;
     }
 }
