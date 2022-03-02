@@ -60,7 +60,8 @@ public final class QueryUtils {
                     JSONObject proper =index.getJSONObject("properties");
                     String magnitude =proper.getString("mag");
                     String location =proper.getString("place");
-                    String Time =proper.optString("time");
+                    // Extract the value for the key called "time"
+                    long Time =proper.getLong("time");
                     EarthquakeListItem earthquake =new EarthquakeListItem(magnitude,location,Time);
                     earthquakeListItems.add(earthquake);
 
