@@ -41,7 +41,7 @@ public final class QueryUtils {
     public static ArrayList<EarthquakeListItem> extractEarthquakes() {
 
         // Create an empty ArrayList that we can start adding earthquakes to
-        ArrayList<EarthquakeListItem> earthquakes = new ArrayList<>();
+        ArrayList<EarthquakeListItem> earthquakeListItems = new ArrayList<>();
 
         // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -50,16 +50,32 @@ public final class QueryUtils {
 
             // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
             // build up a list of Earthquake objects with the corresponding data.
+            JSONObject root =new JSONObject(SAMPLE_JSON_RESPONSE);
+            JSONArray jsonArray =root.getJSONArray("features");
+
+
+
+                for (int i=0 ; i<jsonArray.length() ; i++){
+                    JSONObject index = jsonArray.getJSONObject(i);
+                    JSONObject proper =index.getJSONObject("properties");
+                    String magnitude =proper.getString("mag");
+                    String location =proper.getString("place");
+                    String Time =proper.optString("time");
+                    EarthquakeListItem earthquake =new EarthquakeListItem(magnitude,location,Time);
+                    earthquakeListItems.add(earthquake);
+
+                }
+
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
+            // catch the exception here, so the app doesn't crash. yPrint a log message
             // with the message from the exception.
             Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
         }
 
         // Return the list of earthquakes
-        return earthquakes;
+        return earthquakeListItems;
     }
 
 }
