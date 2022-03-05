@@ -58,7 +58,7 @@ public final class QueryUtils {
                 for (int i=0 ; i<jsonArray.length() ; i++){
                     JSONObject index = jsonArray.getJSONObject(i);
                     JSONObject proper =index.getJSONObject("properties");
-                    String magnitude =proper.getString("mag");
+                    double magnitude =proper.getDouble("mag");
                     String location =proper.getString("place");
                     // Extract the value for the key called "time"
                     long Time =proper.getLong("time");

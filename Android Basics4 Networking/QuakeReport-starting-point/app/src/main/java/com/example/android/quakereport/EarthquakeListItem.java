@@ -1,7 +1,7 @@
 package com.example.android.quakereport;
 
 public class EarthquakeListItem {
-    private  String mMagnitude;
+    private  double mMagnitude;
     private String mLocation;
     /** Time of the earthquake */
     private long mTimeInMilliseconds;
@@ -14,13 +14,13 @@ public class EarthquakeListItem {
      *  earthquake happened
      */
 
-    public EarthquakeListItem(String magnitude, String location, long timeInMilliseconds) {
+    public EarthquakeListItem(double magnitude, String location, long timeInMilliseconds) {
         this.mMagnitude = magnitude;
         this.mLocation = location;
         this.mTimeInMilliseconds = timeInMilliseconds;
     }
 
-    public String getMagnitude() {
+    public double getMagnitude() {
         return mMagnitude;
     }
     /**
