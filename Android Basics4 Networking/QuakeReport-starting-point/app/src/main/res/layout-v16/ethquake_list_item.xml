@@ -30,7 +30,6 @@
         android:id="@+id/primaryLocation"
         android:layout_weight="1"
         android:text="Sen Francisco, CA"
-
         />
     <TextView
     android:layout_width="0dp"

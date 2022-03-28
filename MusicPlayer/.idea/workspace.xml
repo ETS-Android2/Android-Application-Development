@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3277f611-3b88-41a8-ad1e-535355766929" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Android Basics4 Networking/QuakeReport-starting-point/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Android Basics4 Networking/QuakeReport-starting-point/app/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,6 +15,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -34,7 +36,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Android Basics3 Multiscreen Apps/Miwok App" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Android Basics4 Networking/QuakeReport-starting-point" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -130,13 +132,13 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="262" y="138" key="AndroidCreateResourceDirectoryDialog/0.0.1366.768@0.0.1366.768" timestamp="1641051886411" />
-    <state x="262" y="138" key="AndroidCreateResourceFileDialog" timestamp="1641051866480">
+    <state x="262" y="138" key="AndroidCreateResourceFileDialog" timestamp="1646479141611">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="262" y="138" key="AndroidCreateResourceFileDialog/0.0.1366.768@0.0.1366.768" timestamp="1641051866480" />
-    <state x="462" y="138" key="FileChooserDialogImpl" timestamp="1641131097017">
+    <state x="262" y="138" key="AndroidCreateResourceFileDialog/0.0.1366.768@0.0.1366.768" timestamp="1646479141611" />
+    <state x="462" y="138" key="FileChooserDialogImpl" timestamp="1646479165645">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="462" y="138" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1641131097016" />
+    <state x="462" y="138" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1646479165645" />
   </component>
 </project>
