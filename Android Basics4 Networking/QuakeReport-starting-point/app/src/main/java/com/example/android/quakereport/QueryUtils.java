@@ -57,12 +57,19 @@ public final class QueryUtils {
 
                 for (int i=0 ; i<jsonArray.length() ; i++){
                     JSONObject index = jsonArray.getJSONObject(i);
-                    JSONObject proper =index.getJSONObject("properties");
-                    double magnitude =proper.getDouble("mag");
-                    String location =proper.getString("place");
+                    JSONObject properties =index.getJSONObject("properties");
+                    double magnitude =properties.getDouble("mag");
+                    String location =properties.getString("place");
                     // Extract the value for the key called "time"
-                    long Time =proper.getLong("time");
-                    EarthquakeListItem earthquake =new EarthquakeListItem(magnitude,location,Time);
+                    long Time =properties.getLong("time");
+                    // Extract the value for the key called "url"
+                    String url = properties.getString("url");
+
+                  //  EarthquakeListItem earthquake =new EarthquakeListItem(magnitude,location,Time);
+
+                    // Create a new {@link Earthquake} object with the magnitude, location, time,
+                    // and url from the JSON response.
+                    EarthquakeListItem earthquake = new EarthquakeListItem(magnitude, location, Time, url);
                     earthquakeListItems.add(earthquake);
 
                 }
