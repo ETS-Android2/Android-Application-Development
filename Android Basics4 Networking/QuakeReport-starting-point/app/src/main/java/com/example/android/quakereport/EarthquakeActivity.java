@@ -28,11 +28,11 @@ import java.util.ArrayList;
 
 public class EarthquakeActivity extends AppCompatActivity {
     /** URL for earthquake data from the USGS dataset */
-
+    public static final String LOG_TAG = EarthquakeActivity.class.getName();
     private static final String SAMPLE_JSON_RESPONSE = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
 
 
-   // public static final String LOG_TAG = EarthquakeActivity.class.getName();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +98,7 @@ public class EarthquakeActivity extends AppCompatActivity {
 
                 // Send the intent to launch a new activity
                 startActivity(websiteIntent);
-                /*EarthquakeAsyncTask task =new EarthquakeAsyncTask();
-                task.execute(QueryUtils.SAMPLE_JSON_RESPONSE);*/
+                
             }
         });
     }
