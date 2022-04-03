@@ -48,11 +48,11 @@ public final class Utils {
         URL url = createUrl(requestUrl);
 
         // Perform HTTP request to the URL and receive a JSON response back
-        String jsonResponse = null;
+            String jsonResponse = null;
         try {
             jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error closing input stream", e);
+                Log.e(LOG_TAG, "Error closing input stream", e);
         }
 
         // Extract relevant fields from the JSON response and create an {@link Event} object
