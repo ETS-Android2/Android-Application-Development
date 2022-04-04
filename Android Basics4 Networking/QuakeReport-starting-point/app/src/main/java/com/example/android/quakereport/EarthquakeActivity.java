@@ -27,11 +27,16 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class EarthquakeActivity extends AppCompatActivity {
-    /** URL for earthquake data from the USGS dataset */
+    /**
+     * URL for earthquake data from the USGS dataset
+     */
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
     private static final String SAMPLE_JSON_RESPONSE = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
 
-
+    /**
+     * Adapter for the list of earthquakes
+     */
+    private EarthquakeAdapter adapter;
 
 
     @Override
@@ -39,41 +44,11 @@ public class EarthquakeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
-        // Create a list of earthquake magnitude,locations,Date.
-       /* ArrayList<EarthquakeListItem> earthquakes =QueryUtils.extractEarthquakes();*/
-        EarthquakeAsyncTask task= new EarthquakeAsyncTask();
-        task.execute(SAMPLE_JSON_RESPONSE);
-
-
-    }
-    private class EarthquakeAsyncTask extends AsyncTask<String,Void, ArrayList<EarthquakeListItem>>
-    {
-
-        @Override
-        protected ArrayList<EarthquakeListItem> doInBackground(String... urls) {
-            ArrayList<EarthquakeListItem> result =QueryUtils.fetchEarthquakeData(urls[0]);
-
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<EarthquakeListItem> result) {
-            if (result == null)
-            {
-                return;
-            }
-            updateUi(result);
-
-        }
-    }
-
-    private void updateUi (ArrayList<EarthquakeListItem> earthqakes)
-    {
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
 
         // Create a new {@link ArrayAdapter} of earthquakes
-        final EarthquakeAdapter adapter=new EarthquakeAdapter(this,earthqakes);
+        adapter = new EarthquakeAdapter(this, new ArrayList<EarthquakeListItem>());
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
@@ -98,8 +73,39 @@ public class EarthquakeActivity extends AppCompatActivity {
 
                 // Send the intent to launch a new activity
                 startActivity(websiteIntent);
-                
+
             }
         });
+        // Create a list of earthquake magnitude,locations,Date.
+        /* ArrayList<EarthquakeListItem> earthquakes =QueryUtils.extractEarthquakes();*/
+        EarthquakeAsyncTask task = new EarthquakeAsyncTask();
+        task.execute(SAMPLE_JSON_RESPONSE);
+
+
+    }
+
+    private class EarthquakeAsyncTask extends AsyncTask<String, Void, ArrayList<EarthquakeListItem>> {
+
+        @Override
+        protected ArrayList<EarthquakeListItem> doInBackground(String... urls) {
+            ArrayList<EarthquakeListItem> result = QueryUtils.fetchEarthquakeData(urls[0]);
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<EarthquakeListItem> result) {
+            // Clear the adapter of previous earthquake data
+            adapter.clear();
+
+            // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+            // data set. This will trigger the ListView to update.
+            if (result != null && !result.isEmpty()) {
+                adapter.addAll(result);
+
+            }
+        }
+
+
     }
 }
