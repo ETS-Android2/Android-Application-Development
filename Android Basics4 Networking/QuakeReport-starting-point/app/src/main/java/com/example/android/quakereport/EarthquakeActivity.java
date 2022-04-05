@@ -21,6 +21,7 @@ import android.content.Loader;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -48,6 +49,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(LOG_TAG,"TEST: Earthquake Activity onCreate() Called");
         setContentView(R.layout.earthquake_activity);
 
         // Find a reference to the {@link ListView} in the layout
@@ -87,6 +89,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         // Initialize the loader. Pass in the int ID constant defined above and pass in null for
         // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
         // because this activity implements the LoaderCallbacks interface).
+        Log.i(LOG_TAG,"TEST: calling initLoader......");
         loaderManager.initLoader(EARTHQUAKE_LOADER_ID, null, this);
 
 
@@ -95,11 +98,14 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     @Override
     public Loader<ArrayList<EarthquakeListItem>> onCreateLoader(int id, Bundle args) {
         // Create a new loader for the given URL
+        Log.i(LOG_TAG,"TEST: onCreateLoader() called....");
         return new EarthquakeLoader(this, USGS_REQUEST_URL);
     }
 
     @Override
     public void onLoadFinished(Loader<ArrayList<EarthquakeListItem>> loader, ArrayList<EarthquakeListItem> earthquakes) {
+
+        Log.i(LOG_TAG,"TEST: onLoadFinished() called...");
         // Clear the adapter of previous earthquake data
         adapter.clear();
 
@@ -114,6 +120,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public void onLoaderReset(Loader<ArrayList<EarthquakeListItem>> loader) {
+        Log.i(LOG_TAG,"TEST: onLoad(Reset() called....)");
         adapter.clear();
 
     }
