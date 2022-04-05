@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -44,6 +45,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
      * Adapter for the list of earthquakes
      */
     private EarthquakeAdapter adapter;
+    /** TextView that is displayed when the list is empty */
+    private TextView mEmptyStateTextView;
 
 
     @Override
@@ -91,7 +94,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         // because this activity implements the LoaderCallbacks interface).
         Log.i(LOG_TAG,"TEST: calling initLoader......");
         loaderManager.initLoader(EARTHQUAKE_LOADER_ID, null, this);
-
+        mEmptyStateTextView=(TextView) findViewById(R.id.empty_view);
+        earthquakeListView.setEmptyView(mEmptyStateTextView);
 
     }
 
@@ -115,6 +119,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
             adapter.addAll(earthquakes);
 
         }
+        mEmptyStateTextView.setText(R.string.no_earthquakes);   
     }
 
 
