@@ -25,6 +25,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -159,5 +161,20 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id =item.getItemId();
+        if(id==R.id.action_settings)
+        {
+           Intent settingIntent= new Intent(this,SettingsActivity.class);
+           startActivity(settingIntent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
