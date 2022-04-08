@@ -131,7 +131,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     }
 
     @Override
-    public Loader<ArrayList<EarthquakeListItem>> onCreateLoader(int id, Bundle bundle) {
+    public Loader<ArrayList<EarthquakeListItem>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
         Log.i(LOG_TAG,"TEST: onCreateLoader() called....");
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(this);
@@ -140,10 +140,10 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
                 getString(R.string.settings_min_magnitude_default));
         String orderBy = sharedPreferences.getString(
                 getString(R.string.settings_order_by_key),
-                getString(R.string.settings_min_magnitude_default)
+                getString(R.string.settings_order_by_default)
         );
-        Uri bseUri =Uri.parse(USGS_REQUEST_URL);
-        Uri.Builder uriBuilder=bseUri.buildUpon();
+        Uri baseUri =Uri.parse(USGS_REQUEST_URL);
+        Uri.Builder uriBuilder=baseUri.buildUpon();
          uriBuilder.appendQueryParameter("format","geojson");
         uriBuilder.appendQueryParameter("limit","10");
         uriBuilder.appendQueryParameter("minmag",minMagnitude);

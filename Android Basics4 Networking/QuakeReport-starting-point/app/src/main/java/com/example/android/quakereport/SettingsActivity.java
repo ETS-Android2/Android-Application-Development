@@ -23,8 +23,8 @@ public class SettingsActivity extends AppCompatActivity
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main) ;
-            Preference minMagnintude =findPreference(getString(R.string.settings_min_magnitude_key));
-            bindPreferenceSummaryToValue(minMagnintude);
+            Preference minMagnitude =findPreference(getString(R.string.settings_min_magnitude_key));
+            bindPreferenceSummaryToValue(minMagnitude);
 
             Preference orderBy =findPreference(getString(R.string.settings_order_by_key));
             bindPreferenceSummaryToValue(orderBy);
@@ -32,8 +32,8 @@ public class SettingsActivity extends AppCompatActivity
 
 
         @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            String stringValue=newValue.toString();
+        public boolean onPreferenceChange(Preference preference, Object value) {
+            String stringValue=value.toString();
             if(preference instanceof ListPreference){
                 ListPreference listPreference=(ListPreference) preference;
                 int prefIndex =listPreference.findIndexOfValue(stringValue);
