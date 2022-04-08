@@ -131,7 +131,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     }
 
     @Override
-    public Loader<ArrayList<EarthquakeListItem>> onCreateLoader(int id, Bundle args) {
+    public Loader<ArrayList<EarthquakeListItem>> onCreateLoader(int id, Bundle bundle) {
         // Create a new loader for the given URL
         Log.i(LOG_TAG,"TEST: onCreateLoader() called....");
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(this);
@@ -147,7 +147,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
          uriBuilder.appendQueryParameter("format","geojson");
         uriBuilder.appendQueryParameter("limit","10");
         uriBuilder.appendQueryParameter("minmag",minMagnitude);
-        uriBuilder.appendQueryParameter("orderby","time");
+        uriBuilder.appendQueryParameter("orderby",orderBy);
         return new EarthquakeLoader(this, uriBuilder.toString());
     }
 

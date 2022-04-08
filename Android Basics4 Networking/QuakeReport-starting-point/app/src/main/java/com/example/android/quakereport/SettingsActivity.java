@@ -24,17 +24,12 @@ public class SettingsActivity extends AppCompatActivity
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main) ;
             Preference minMagnintude =findPreference(getString(R.string.settings_min_magnitude_key));
-            bindPreFerenceSummaryToValue(minMagnintude);
+            bindPreferenceSummaryToValue(minMagnintude);
 
-            Preference orderBy =findPreference(getString(R.string.settings_min_magnitude_key));
-            bindPreFerenceSummaryToValue(orderBy);
+            Preference orderBy =findPreference(getString(R.string.settings_order_by_key));
+            bindPreferenceSummaryToValue(orderBy);
         }
-        private void bindPreFerenceSummaryToValue(Preference preference){
-            preference.setOnPreferenceChangeListener(this);
-            SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(preference.getContext());
-            String preferenceString=preferences.getString(preference.getKey(), "");
-            onPreferenceChange(preference,preferenceString);
-        }
+
 
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -44,8 +39,8 @@ public class SettingsActivity extends AppCompatActivity
                 int prefIndex =listPreference.findIndexOfValue(stringValue);
                 if(prefIndex>=0)
                 {
-                    CharSequence[] lables=listPreference.getEntries();
-                    preference.setSummary(lables[prefIndex]);
+                    CharSequence[] labels=listPreference.getEntries();
+                    preference.setSummary(labels[prefIndex]);
                 }
                 else {
                     preference.setSummary(stringValue);
@@ -54,6 +49,12 @@ public class SettingsActivity extends AppCompatActivity
             }
             preference.setSummary(stringValue);
             return true;
+        }
+        private void bindPreferenceSummaryToValue(Preference preference){
+            preference.setOnPreferenceChangeListener(this);
+            SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(preference.getContext());
+            String preferenceString=preferences.getString(preference.getKey(), "");
+            onPreferenceChange(preference,preferenceString);
         }
     }
 }
