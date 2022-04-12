@@ -53,7 +53,14 @@ public class CatalogActivity extends AppCompatActivity {
 
 
 
+
          mDbHelper = new PetDbHelper(this);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         displayDatabaseInfo();
     }
 
@@ -99,6 +106,7 @@ public class CatalogActivity extends AppCompatActivity {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
                 insertPet();
+
                 displayDatabaseInfo();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
@@ -112,8 +120,7 @@ public class CatalogActivity extends AppCompatActivity {
      * Helper method to insert hardcoded pet data into the database. For debugging purposes only.
      */
     private void insertPet()
-    {
-    SQLiteDatabase db=mDbHelper.getWritableDatabase();
+    { SQLiteDatabase db=mDbHelper.getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put(PetEntry.COLUMN_PET_NAME,"Todo");
         values.put(PetEntry.COLUMN_PET_BREED,"Terrier");
@@ -121,5 +128,7 @@ public class CatalogActivity extends AppCompatActivity {
         values.put(PetEntry.COLUMN_PET_WEIGHT,"7");
         long newRowId =db.insert(PetEntry.TABLE_NAME,null,values);
         Log.v("CatalogActivity ","New Row ID=>"+newRowId);
+
+
     }
 }
