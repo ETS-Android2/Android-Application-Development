@@ -7,7 +7,11 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.util.Log;
+
 import com.example.android.pets.data.PetContract.PetEntry;
+
+import java.net.URI;
 
 /**
  * {@link ContentProvider} for Pets app.
@@ -30,14 +34,25 @@ public class PetProvider extends ContentProvider {
  * The input passed into the constructor represents the code to return for the root URI.
  * It's common to use NO_MATCH as the input for this case.
  */
-    public static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+    private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     // Static initializer. This is run the first time anything is called from this class.
     static {
         // The calls to addURI() go here, for all of the content URI patterns that the provider
         // should recognize. All paths added to the UriMatcher have a corresponding code to return
         // when a match is found.
+        // The content URI of the form "content://com.example.android.pets/pets" will map to the
+        // integer code {@link #PETS}. This URI is used to provide access to MULTIPLE rows
+        // of the pets table.
         sUriMatcher.addURI(PetContract.CONTENT_AUTHORITY,PetContract.PATH_PETS,PETS);
-        sUriMatcher.addURI(PetContract.CONTENT_AUTHORITY,PetContract.PATH_PETS+"#",PET_ID);
+
+        // The content URI of the form "content://com.example.android.pets/pets/#" will map to the
+        // integer code {@link #PETS_ID}. This URI is used to provide access to ONE single row
+        // of the pets table.
+
+        // In this case, the "#" wildcard is used where "#" can be substituted for an integer.
+        // For example, "content://com.example.android.pets/pets/3" matches, but
+        // "content://com.example.android.pets/pets" (without a number at the end) doesn't match.
+        sUriMatcher.addURI(PetContract.CONTENT_AUTHORITY,PetContract.PATH_PETS+"/#",PET_ID);
     }
 
     /*DataBase halper Object*/
@@ -98,7 +113,7 @@ public class PetProvider extends ContentProvider {
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);
         }
 
-        return null;
+        return cursor;
     }
 
     /**
@@ -106,7 +121,34 @@ public class PetProvider extends ContentProvider {
      */
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
-        return null;
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case PETS:
+                return insertPet(uri, contentValues);
+            default:
+                throw new IllegalArgumentException("Insertion is not supported for " + uri);
+        }
+    }
+
+    /**
+     * Insert a pet into the database with the given content values. Return the new content URI
+     * for that specific row in the database.
+     */
+    private Uri insertPet(Uri uri, ContentValues values) {
+
+        // Get writeable database
+        SQLiteDatabase database=mDbHelper.getWritableDatabase();
+        // Insert the new pet with the given values
+        long id =database.insert(PetEntry.TABLE_NAME,null,values);
+        if (id==-1){
+            Log.e(LOG_TAG,"Failed to insert row for " +uri);
+            return null;
+        }
+
+
+        // Once we know the ID of the new row in the table,
+        // return the new URI with the ID appended to the end of it
+        return ContentUris.withAppendedId(uri, id);
     }
 
     /**
