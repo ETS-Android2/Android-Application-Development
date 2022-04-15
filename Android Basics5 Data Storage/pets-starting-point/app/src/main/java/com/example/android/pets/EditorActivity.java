@@ -165,6 +165,8 @@ public class EditorActivity extends AppCompatActivity {
         String weightString =mWeightEditText.getText().toString().trim();
         int weight =Integer.parseInt(weightString);
 
+
+
        /* // Create database helper
         PetDbHelper mDbHelper = new PetDbHelper(this);
 
@@ -178,6 +180,8 @@ public class EditorActivity extends AppCompatActivity {
         values.put(PetEntry.COLUMN_PET_BREED,breedString);
         values.put(PetEntry.COLUMN_PET_GENDER,mGender);
         values.put(PetEntry.COLUMN_PET_WEIGHT,weight);
+
+
 
         // Insert a new pet into the provider, returning the content URI for the new pet.
         Uri newUri = getContentResolver().insert(PetEntry.CONTENT_URI,values);

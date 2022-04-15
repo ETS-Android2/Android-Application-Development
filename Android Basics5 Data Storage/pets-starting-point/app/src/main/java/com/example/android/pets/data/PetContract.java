@@ -109,7 +109,7 @@ public final class PetContract {
 
         public static boolean isValidGender( int gender)
         {
-            if (gender == GENDER_FEMALE || gender == GENDER_MALE || gender ==GENDER_UNKNOWN)
+            if (gender == GENDER_FEMALE || gender == GENDER_MALE || gender == GENDER_UNKNOWN)
             {
                 return true;
             }
