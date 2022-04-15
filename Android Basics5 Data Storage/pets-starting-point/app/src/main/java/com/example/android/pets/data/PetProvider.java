@@ -136,6 +136,25 @@ public class PetProvider extends ContentProvider {
      */
     private Uri insertPet(Uri uri, ContentValues values) {
 
+        // Check that the name is not null
+        String name = values.getAsString(PetEntry.COLUMN_PET_NAME);
+        if (name == null) {
+            throw new IllegalArgumentException("Pet requires a name");
+        }
+
+
+
+        Integer gender= values.getAsInteger(PetEntry.COLUMN_PET_GENDER);
+        if (gender == null || PetEntry.isValidGender(gender))
+        {
+            throw new IllegalArgumentException("Pet requires valid gender");
+        }
+        // If the weight is provided, check that it's greater than or equal to 0 kg
+        Integer weight = values.getAsInteger(PetEntry.COLUMN_PET_WEIGHT);
+        if(weight != null && weight<0){
+            throw new IllegalArgumentException("Pet requires valid weight");
+        }
+
         // Get writeable database
         SQLiteDatabase database=mDbHelper.getWritableDatabase();
         // Insert the new pet with the given values
@@ -144,6 +163,7 @@ public class PetProvider extends ContentProvider {
             Log.e(LOG_TAG,"Failed to insert row for " +uri);
             return null;
         }
+
 
 
         // Once we know the ID of the new row in the table,

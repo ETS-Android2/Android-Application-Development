@@ -194,7 +194,7 @@ public class EditorActivity extends AppCompatActivity {
         }
         else {
             // Otherwise, the insertion was successful and we can display a toast with the row ID.
-            Toast.makeText(this,getString(R.string.editor_insert_pet_successful),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getString(  R.string.editor_insert_pet_successful),Toast.LENGTH_SHORT).show();
 
         }
 
