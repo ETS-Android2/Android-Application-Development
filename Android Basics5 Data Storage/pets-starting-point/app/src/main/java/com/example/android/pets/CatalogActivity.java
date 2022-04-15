@@ -40,7 +40,7 @@ import com.example.android.pets.data.PetDbHelper;
  */
 public class CatalogActivity extends AppCompatActivity {
     private PetDbHelper mDbHelper;
-    Cursor cursor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class CatalogActivity extends AppCompatActivity {
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
         // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+       /* SQLiteDatabase db = mDbHelper.getReadableDatabase();*/
         String[] projection = {
                 PetEntry._ID,
                 PetEntry.COLUMN_PET_NAME,

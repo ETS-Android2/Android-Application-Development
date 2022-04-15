@@ -34,7 +34,7 @@ public class PetProvider extends ContentProvider {
  * The input passed into the constructor represents the code to return for the root URI.
  * It's common to use NO_MATCH as the input for this case.
  */
-    private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+    public static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     // Static initializer. This is run the first time anything is called from this class.
     static {
         // The calls to addURI() go here, for all of the content URI patterns that the provider
